@@ -27,7 +27,7 @@ Free AugmentCode 是一个用于清理AugmentCode相关数据的工具，可以�
 1. 确保你的系统已安装 Python 3.10及以上
 2. 克隆此仓库到本地：
    ```bash
-   git clone https://github.com/yourusername/free-augmentcode.git
+   git clone https://github.com/vber/free-augmentcode.git
    cd free-augmentcode
    ```
 
