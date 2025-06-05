@@ -92,7 +92,7 @@ Free AugmentCode is a tool for cleaning AugmentCode-related data, allowing unlim
 1. Ensure Python 3.10 or above is installed on your system
 2. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/free-augmentcode.git
+   git clone https://github.com/vber/free-augmentcode.git
    cd free-augmentcode
    ```
 
