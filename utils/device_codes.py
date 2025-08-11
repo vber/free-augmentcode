@@ -30,7 +30,17 @@ def generate_device_id() -> str:
     return device_id.lower()
 
 
+def generate_sqm_id() -> str:
+    """
+    Generate a random UUID for telemetry.sqmId in the format {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX} (uppercase, curly braces).
+    Returns:
+        str: The generated sqmId string
+    """
+    return '{' + str(uuid.uuid4()).upper() + '}'
+
+
 if __name__ == "__main__":
     # Example usage
     print(f"Machine ID: {generate_machine_id()}")
-    print(f"Device ID: {generate_device_id()}") 
+    print(f"Device ID: {generate_device_id()}")
+    print(f"SQM ID: {generate_sqm_id()}") 

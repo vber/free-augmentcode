@@ -3,7 +3,7 @@ import os
 import time
 import shutil
 from utils.paths import get_storage_path, get_machine_id_path
-from utils.device_codes import generate_machine_id, generate_device_id
+from utils.device_codes import generate_machine_id, generate_device_id, generate_sqm_id
 
 def _create_backup(file_path: str) -> str:
     """
@@ -31,7 +31,7 @@ def modify_telemetry_ids() -> dict:
     1. Creates backups of the storage.json and machine ID files
     2. Reads the storage.json file
     3. Generates new machine and device IDs
-    4. Updates the telemetry.machineId and telemetry.devDeviceId values in storage.json
+    4. Updates the telemetry.machineId, telemetry.devDeviceId, and telemetry.sqmId values in storage.json
     5. Updates the machine ID file with the new machine ID
     6. Saves the modified files
     
@@ -42,6 +42,8 @@ def modify_telemetry_ids() -> dict:
             'new_machine_id': str,
             'old_device_id': str,
             'new_device_id': str,
+            'old_sqm_id': str,
+            'new_sqm_id': str,
             'storage_backup_path': str,
             'machine_id_backup_path': str
         }
@@ -65,14 +67,17 @@ def modify_telemetry_ids() -> dict:
     # Store old values
     old_machine_id = data.get('telemetry.machineId', '')
     old_device_id = data.get('telemetry.devDeviceId', '')
+    old_sqm_id = data.get('telemetry.sqmId', '')
     
     # Generate new IDs
     new_machine_id = generate_machine_id()
     new_device_id = generate_device_id()
+    new_sqm_id = generate_sqm_id()
     
     # Update the values in storage.json
     data['telemetry.machineId'] = new_machine_id
     data['telemetry.devDeviceId'] = new_device_id
+    data['telemetry.sqmId'] = new_sqm_id
     
     # Write the modified content back to storage.json
     with open(storage_path, 'w', encoding='utf-8') as f:
@@ -87,6 +92,8 @@ def modify_telemetry_ids() -> dict:
         'new_machine_id': new_machine_id,
         'old_device_id': old_device_id,
         'new_device_id': new_device_id,
+        'old_sqm_id': old_sqm_id,
+        'new_sqm_id': new_sqm_id,
         'storage_backup_path': storage_backup_path,
         'machine_id_backup_path': machine_id_backup_path
     } 
